@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import todoActions from './actions/todos'
+import actionsCreators from './actions'
 
 import { Button } from 'semantic-ui-react'
 
@@ -64,18 +64,14 @@ class Todo extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => ({
+    todos: state.todos.data
+})
 
-    return {
-        todos: state.todos.data
-    }
-}
+const mapDispatchToProps = (dispatch) => ({
+    addTodo: (text) => dispatch(actionsCreators.addTodo(text)),
+    removeTodo: (id) => dispatch(actionsCreators.removeTodo(id)),
+    toogleTodo: (id) => dispatch(actionsCreators.toogleTodo(id))
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addTodo: (text) => dispatch(todoActions.addTodo(text)),
-        removeTodo: (id) => dispatch(todoActions.removeTodo(id)),
-        toogleTodo: (id) => dispatch(todoActions.toogleTodo(id))
-    }
-}
 export default connect(mapStateToProps, mapDispatchToProps)(Todo)
