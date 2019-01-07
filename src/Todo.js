@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
 
-import actionsCreators from './actions'
+import actionsCreators from './redux/actions'
 
 import { Button } from 'semantic-ui-react'
 
@@ -69,7 +69,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    addTodo: (text) => dispatch(actionsCreators.addTodo(text)),
+    addTodo: (text) => dispatch(actionsCreators.addTodoRequest(text)),
     removeTodo: (id) => dispatch(actionsCreators.removeTodo(id)),
     toogleTodo: (id) => dispatch(actionsCreators.toogleTodo(id))
 })
